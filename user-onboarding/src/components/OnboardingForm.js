@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import Users from './Users';
 
-const OnboardingForm = ({ erros, touched, values, handleSubmit, status }) => {
+const OnboardingForm = ({ errors, touched, values, handleSubmit, status }) => {
 
     const [users, setUsers] = useState([]);
     console.log(users);
@@ -20,8 +20,11 @@ const OnboardingForm = ({ erros, touched, values, handleSubmit, status }) => {
         <>
             <Form>
                 <Field type="text" name="name" placeholder="Name"/>
+                {touched.name && errors.name && <p className="error">{errors.name}</p>}
                 <Field type="email" name="email" placeholder="Email"/>
+                {touched.email && errors.email && <p className="error">{errors.email}</p>}
                 <Field type="password" name="password" placeholder="Password"/>
+                {touched.password && errors.password && <p className="error">{errors.password}</p>}
 
                 <label className="checkbox-container">
                     Terms of Service
