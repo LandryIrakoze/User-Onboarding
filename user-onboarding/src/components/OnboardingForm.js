@@ -19,7 +19,12 @@ const OnboardingForm = ({ erros, touched, values, handleSubmit, status }) => {
             <Field type="text" name="name" placeholder="Name"/>
             <Field type="email" name="email" placeholder="Email"/>
             <Field type="password" name="password" placeholder="Password"/>
-            <Field type="checkbox" name="tos" placeholder="Terms of Service"/>
+
+            <label className="checkbox-container">
+                Terms of Service
+                <Field type="checkbox" name="tos" placeholder="Terms of Service" checked="values.tos"/>
+            </label>
+            
             <button type="submit">submit!</button>
         </Form>
     )
@@ -43,7 +48,7 @@ const FormikOnboarding = withFormik({
 
     handleSubmit(values, { setStatus }) {
         axios
-            .post('https://reqres.in/api/users_')
+            .post('https://reqres.in/api/users_', values)
             .then(res => setStatus(res.data))
             .catch(err => console.error(err.reponse));
     }
