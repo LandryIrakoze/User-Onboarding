@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 
+import Users from './Users';
+
 const OnboardingForm = ({ erros, touched, values, handleSubmit, status }) => {
 
     const [users, setUsers] = useState([]);
@@ -15,18 +17,21 @@ const OnboardingForm = ({ erros, touched, values, handleSubmit, status }) => {
     }, [status])
 
     return (
-        <Form>
-            <Field type="text" name="name" placeholder="Name"/>
-            <Field type="email" name="email" placeholder="Email"/>
-            <Field type="password" name="password" placeholder="Password"/>
+        <>
+            <Form>
+                <Field type="text" name="name" placeholder="Name"/>
+                <Field type="email" name="email" placeholder="Email"/>
+                <Field type="password" name="password" placeholder="Password"/>
 
-            <label className="checkbox-container">
-                Terms of Service
-                <Field type="checkbox" name="tos" placeholder="Terms of Service" checked="values.tos"/>
-            </label>
-            
-            <button type="submit">submit!</button>
-        </Form>
+                <label className="checkbox-container">
+                    Terms of Service
+                    <Field type="checkbox" name="tos" placeholder="Terms of Service" checked="values.tos"/>
+                </label>
+                
+                <button type="submit">submit!</button>
+            </Form>
+            <Users info={users}/>
+        </>
     )
 }
 
