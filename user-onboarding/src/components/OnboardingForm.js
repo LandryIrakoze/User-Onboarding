@@ -28,7 +28,7 @@ const OnboardingForm = ({ errors, touched, values, handleSubmit, status }) => {
 
                 <label className="checkbox-container">
                     Terms of Service
-                    <Field type="checkbox" name="tos" placeholder="Terms of Service" checked="values.tos"/>
+                    <Field type="checkbox" name="tos"/>
                 </label>
                 
                 <button type="submit">submit!</button>
@@ -51,7 +51,8 @@ const FormikOnboarding = withFormik({
     validationSchema: Yup.object().shape({
         name: Yup.string().required(),
         email: Yup.string().email().required(),
-        password: Yup.string().min(8).required()
+        password: Yup.string().min(8).required(),
+        tos: Yup.bool().oneOf([true], "Must Accept Terms and Conditions")
     }),
 
     handleSubmit(values, { setStatus }) {
